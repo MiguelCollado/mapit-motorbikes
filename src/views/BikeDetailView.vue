@@ -18,12 +18,13 @@ const isModalOpen = ref(false);
 const isModalLoading = ref(false);
 const openModalButtonType = ref("primary");
 
-onBeforeMount(async () => {
-  const fetchedBike = await fetchBike(params.id as string)
-  if (fetchedBike !== null) {
+const fetchedBike = await fetchBike(params.id as string)
+
+onBeforeMount(() => {
+  if (Object.entries(fetchedBike).length > 0) {
     bike.value = fetchedBike
   } else {
-      await router.push({name: "not-found"})
+    router.push({name: "not-found"})
   }
 })
 
@@ -49,19 +50,19 @@ function closeModal() {
   <div class="flex flex-col">
 
     <div class="flex flex-row items-center py-3">
-      <h1>{{bike.id}}</h1>
-      <span class="model">{{bike.modelo}}</span>
-      <RouterLink to="/"  class="ml-auto flex items-center">
+      <h1>{{ bike.id }}</h1>
+      <span class="model">{{ bike.modelo }}</span>
+      <RouterLink to="/" class="ml-auto flex items-center bg-gray-400/20 px-3 py-1 rounded-full">
         <span class="mr-2 mb-[2px]">Cerrar</span>
-        <button class="close-button w-[18px] h-[18px] " />
+        <button class="close-button w-[18px] h-[18px] "/>
       </RouterLink>
     </div>
 
     <!-- Hardcoded Mapit Iot Offices  -->
-    <MapitMap :latitude="41.39715905370612" :longitude="2.181240404125038" />
-    <MapitBikeInfo :bike="bike" />
+    <MapitMap :latitude="41.39715905370612" :longitude="2.181240404125038"/>
+    <MapitBikeInfo :bike="bike"/>
 
-    <MapitButton @click="openModal" :loading="isModalLoading" text="Solicitar cita" :type="openModalButtonType" class="ml-auto mt-2" />
+    <MapitButton @click="openModal" :loading="isModalLoading" text="Solicitar cita" :type="openModalButtonType" class="ml-auto mt-2"/>
     <MapitModal
       :open="isModalOpen" @close-modal="closeModal"
       title="Cita solicitada"
@@ -74,35 +75,48 @@ function closeModal() {
 h1 {
   @apply text-2xl;
 }
+
 .model {
-  @apply text-base font-medium ml-4 bg-gray-400 px-3 text-white dark:bg-gray-100/10 rounded-lg w-max;
+  @apply text-base font-medium ml-4 bg-gray-400 px-3 text-white rounded-lg w-max;
 }
 
 .close-button {
   position: relative;
 }
+
 .close-button:before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: black;
+  content:       "";
+  position:      absolute;
+  top:           50%;
+  left:          0;
+  width:         100%;
+  height:        3px;
+  background:    black;
   border-radius: 3px;
 
-  transform: translate(0, -50%) rotate(45deg);
+  transform:     translate(0, -50%) rotate(45deg);
 }
+
 .close-button:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 3px;
-  height: 100%;
-  background: black;
+  content:       "";
+  position:      absolute;
+  top:           0;
+  left:          50%;
+  width:         3px;
+  height:        100%;
+  background:    black;
   border-radius: 3px;
 
-  transform: translate(-50%, 0) rotate(45deg);
+  transform:     translate(-50%, 0) rotate(45deg);
+}
+
+@media (prefers-color-scheme: dark) {
+  .close-button:before {
+    background: white;
+  }
+
+  .close-button:after {
+    background: white;
+  }
 }
 </style>

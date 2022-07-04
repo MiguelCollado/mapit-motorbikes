@@ -1,15 +1,11 @@
 <script lang="ts" setup>
 import MapitBikeList from "@/components/MapitBikeList.vue";
 import {useBikeService} from "@/services/bikes";
-import {onMounted, ref} from "vue";
-import type Motorbike from "@/domain/motorbike";
+import {ref} from "vue";
 
 const {fetchUserBikes} = useBikeService();
-const userBikes = ref([] as Motorbike[])
+const userBikes = ref(await fetchUserBikes())
 
-onMounted(async () => {
-  userBikes.value = await fetchUserBikes();
-});
 </script>
 
 <template>

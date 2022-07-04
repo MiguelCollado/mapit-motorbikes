@@ -1,13 +1,14 @@
 import type Motorbike from "@/domain/motorbike";
 
-function fetchUserBikes(): Promise<Array<Motorbike>> {
+async function fetchUserBikes() {
   try {
-    return fetch(`${import.meta.env.VITE_MAPIT_MOTORBIKE_ENDPOINT}/motos`)
-      .then(response => response.json())
-      .then(json => json as Array<Motorbike>)
+    const response = await fetch(`${import.meta.env.VITE_MAPIT_MOTORBIKE_ENDPOINT}/motos`)
+    const bikes = await response.json() as Motorbike[]
+
+    return bikes ?? []
   } catch (error) {
     console.error(error);
-    return Promise.resolve([] as Array<Motorbike>);
+    return [] as Motorbike[];
   }
 }
 
@@ -16,14 +17,10 @@ async function fetchBike(id: string) {
     const response = await fetch(`${import.meta.env.VITE_MAPIT_MOTORBIKE_ENDPOINT}/motos/${id}`)
     const bike = await response.json() as Motorbike
 
-    if (bike !== null && Object.entries(bike).length > 0) {
-      return bike
-    } else {
-      return null
-    }
+    return bike ?? {} as Motorbike
   } catch (error) {
     console.error(error);
-    return null;
+    return {} as Motorbike
   }
 }
 

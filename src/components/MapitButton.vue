@@ -36,9 +36,9 @@ button:before {
 }
 
 .primary {
-  @apply bg-blue-500 text-white;
+  @apply bg-blue-400 text-white;
   @apply py-2 rounded-lg shadow-lg;
-  @apply hover:bg-blue-700;
+  @apply hover:bg-blue-900;
   @apply select-none;
 
   transition: all 0.2s ease-in-out;

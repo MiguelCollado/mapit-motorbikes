@@ -23,7 +23,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div ref="map" class="mapit-map w-100 h-[50vh]">
+  <div ref="map" class="mapit-map w-100 h-[50vh] rounded-lg">
   </div>
 </template>
 

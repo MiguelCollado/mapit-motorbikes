@@ -25,20 +25,10 @@ function addMarker(element: HTMLElement | undefined, position: google.maps.LatLn
   }
 }
 
-async function createMap(element: HTMLElement, position: google.maps.LatLngLiteral) {
-  if (!!element && !!googleInstance) {
-    return new googleInstance.maps.Map(element, {
-      center: position,
-      zoom: 8,
-    });
-  }
-}
-
 export const useGoogleMaps = async () => {
   await init();
 
   return {
     addMarker,
-    createMap,
   }
 }
