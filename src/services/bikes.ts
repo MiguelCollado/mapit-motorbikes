@@ -2,7 +2,6 @@ import type Motorbike from "@/domain/motorbike";
 
 function fetchUserBikes(): Promise<Array<Motorbike>> {
   try {
-    console.log(import.meta.env.VITE_MAPIT_MOTORBIKE_ENDPOINT)
     return fetch(`${import.meta.env.VITE_MAPIT_MOTORBIKE_ENDPOINT}/motos`)
       .then(response => response.json())
       .then(json => json as Array<Motorbike>)

@@ -7,7 +7,7 @@ import Navbar from "@/components/Navbar.vue";</script>
 
   <Suspense>
     <template #default>
-      <main class="w-100 h-100">
+      <main class="w-100 h-100 relative">
         <RouterView />
       </main>
     </template>

@@ -17,9 +17,10 @@ const props = defineProps<Props>()
 
 <style>
 .primary {
-  @apply bg-blue-500 text-white;
-  @apply transition-all duration-200 ease-in-out;
+  @apply bg-blue-400 text-white;
   @apply p-3 rounded-lg shadow-lg;
   @apply hover:bg-blue-700;
+
+  transition: all 0.2s ease-in-out;
 }
 </style>
