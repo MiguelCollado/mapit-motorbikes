@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
+import {computed, defineEmits, ref, toRef, watch} from 'vue'
 import {
   TransitionRoot,
   TransitionChild,
@@ -8,28 +8,26 @@ import {
   DialogTitle,
 } from '@headlessui/vue'
 
-const isOpen = ref(true)
+interface Props {
+  open: boolean,
+  title: string,
+  description: string,
+}
 
-function closeModal() {
-  isOpen.value = false
-}
-function openModal() {
-  isOpen.value = true
-}
+const props = defineProps<Props>()
+const emit = defineEmits(['closeModal'])
+
+watch(() => props.open, (value) => {
+  isOpen.value = value;
+})
+
+const isOpen = ref(false)
+
 </script>
 
 <template>
-  <div class="fixed inset-0 flex items-center justify-center">
-    <button
-      type="button"
-      @click="openModal"
-      class="rounded-md bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-    >
-      Open dialog
-    </button>
-  </div>
   <TransitionRoot appear :show="isOpen" as="template">
-    <Dialog as="div" @close="closeModal" class="relative z-10">
+    <Dialog as="div" @close="emit('closeModal')" class="relative z-10">
       <TransitionChild
         as="template"
         enter="duration-300 ease-out"
@@ -60,24 +58,23 @@ function openModal() {
             >
               <DialogTitle
                 as="h3"
-                class="text-lg font-medium leading-6 text-gray-900"
+                class="text-lg text-center font-medium leading-6 text-gray-900"
               >
-                Payment successful
+                {{ props.title }}
               </DialogTitle>
               <div class="mt-2">
-                <p class="text-sm text-gray-500">
-                  Your payment has been successfully submitted. We’ve sent you
-                  an email with all of the details of your order.
+                <p class="text-sm text-center text-gray-500">
+                  {{  props.description }}
                 </p>
               </div>
 
-              <div class="mt-4">
+              <div class="mt-4 m-auto flex justify-center">
                 <button
                   type="button"
                   class="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                  @click="closeModal"
+                  @click="emit('closeModal')"
                 >
-                  Got it, thanks!
+                  OK!
                 </button>
               </div>
             </DialogPanel>

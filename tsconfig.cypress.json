@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig.app.json",
   "include": [
-    "cypress/**/*.ts"
+    "cypress/**/*.ts",
   ],
   "exclude": [],
   "compilerOptions": {
