@@ -1,11 +1,13 @@
 <script lang="ts" setup>
-import {RouterLink} from "vue-router"</script>
+import {RouterLink} from "vue-router"
+import MapitButton from "@/components/MapitButton.vue";
+
+</script>
 
 <template>
-  <nav>
-    <RouterLink to="/">Home</RouterLink>
-    <RouterLink to="/about">About</RouterLink>
+  <nav class="pb-6">
+    <RouterLink to="/">
+      <MapitButton text="Dashboard" type="primary"></MapitButton>
+    </RouterLink>
   </nav>
 </template>
-
-<style></style>

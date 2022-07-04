@@ -14,15 +14,6 @@
 	}
 }
 
-*,
-*::before,
-*::after {
-	box-sizing:  border-box;
-	font-weight: normal;
-	margin:      0;
-	position:    relative;
-}
-
 body {
 	background:              var(--background-color);
 	color:                   var(--color);
@@ -31,8 +22,9 @@ body {
 	font-size:               15px;
 	-webkit-font-smoothing:  antialiased;
 	line-height:             1.6;
-	min-height:              100vh;
 	-moz-osx-font-smoothing: grayscale;
 	text-rendering:          optimizeLegibility;
 	transition:              color 0.5s, background-color 0.5s;
+
+	padding: 32px;
 }

@@ -5,5 +5,14 @@ import Navbar from "@/components/Navbar.vue";</script>
 <template>
   <Navbar />
 
-  <RouterView />
+  <Suspense>
+    <template #default>
+      <main class="w-100 h-100">
+        <RouterView />
+      </main>
+    </template>
+    <template #fallback>
+      Loading...
+    </template>
+  </Suspense>
 </template>
