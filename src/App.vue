@@ -1,18 +1,29 @@
 <script lang="ts" setup>
 import {RouterView} from "vue-router"
-import Navbar from "@/components/Navbar.vue";</script>
+import Navbar from "@/components/Navbar.vue";
+import Footer from "@/components/Footer.vue";
+</script>
 
 <template>
-  <Navbar />
+  <Navbar/>
 
-  <Suspense>
-    <template #default>
-      <main class="w-100 h-100 relative">
-        <RouterView />
-      </main>
-    </template>
-    <template #fallback>
-      Loading...
-    </template>
-  </Suspense>
+  <main>
+    <router-view v-slot="{ Component }">
+      <transition name="fade" mode="out-in">
+        <component :is="Component" />
+      </transition>
+    </router-view>
+  </main>
 </template>
+
+<style>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>

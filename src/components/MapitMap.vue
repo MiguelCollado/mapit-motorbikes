@@ -14,9 +14,9 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const map = ref<HTMLElement>();
-const {addMarker} = await useGoogleMaps();
 
-onMounted(() => {
+onMounted(async () => {
+  const {addMarker} = await useGoogleMaps();
   addMarker(map.value as HTMLElement, {lat: props.latitude, lng: props.longitude})
 })
 

@@ -2,23 +2,30 @@
 
 import {useRoute} from "vue-router";
 import {useBikeService} from "@/services/bikes";
-import {computed, ref} from "vue";
+import {onMounted, ref} from "vue";
 import MapitMap from "@/components/MapitMap.vue";
 import MapitBikeInfo from "@/components/MapitBikeInfo.vue";
 import MapitButton from "@/components/MapitButton.vue";
 import MapitModal from "@/components/MapitModal.vue";
+import type Motorbike from "@/domain/motorbike";
 
 const {params} = useRoute();
 const {fetchBike} = useBikeService();
 
-const bike = ref(await fetchBike(params.id as string));
+const bike = ref({} as Motorbike);
 const isModalOpen = ref(false);
 const isModalLoading = ref(false);
 const openModalButtonType = ref("primary");
 
+onMounted(async () => {
+  bike.value = await fetchBike(params.id as string)
+})
+
 function openModal() {
 
   isModalLoading.value = true;
+
+  // Hacemos un timeout para simular una llamada API
   setTimeout(() => {
     isModalOpen.value = true;
     isModalLoading.value = false;
@@ -49,12 +56,12 @@ function closeModal() {
     <MapitBikeInfo :bike="bike" />
 
     <MapitButton @click="openModal" :loading="isModalLoading" text="Solicitar cita" :type="openModalButtonType" class="ml-auto mt-2" />
+    <MapitModal
+      :open="isModalOpen" @close-modal="closeModal"
+      title="Cita solicitada"
+      description="Su concesionario se pondrá en contacto pronto, para concertar cita."
+    />
   </div>
-  <MapitModal
-    :open="isModalOpen" @close-modal="closeModal"
-    title="Cita solicitada"
-    description="Su concesionario se pondrá en contacto pronto, para concertar cita."
-  />
 </template>
 
 <style>
@@ -62,7 +69,7 @@ h1 {
   @apply text-2xl;
 }
 .model {
-  @apply text-xs ml-3 px-2 bg-blue-100 dark:bg-gray-100/10 rounded-lg w-max;
+  @apply text-base font-medium ml-4 bg-gray-400 px-3 text-white dark:bg-gray-100/10 rounded-lg w-max;
 }
 
 .close-button {

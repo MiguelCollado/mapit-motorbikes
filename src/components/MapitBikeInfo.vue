@@ -24,12 +24,14 @@ const buybackMotorbikePrice = computed(() => {
 
 <template>
   <div class="flex flex-col">
-    <p class="mt-3 bg-gray-100 p-4 rounded-lg">
-      El valor mostrado a continuación es una estimación de precio de recompra aproximado, es necesario realizar una
-      tasación en un taller. Por favor, consulta con tu concesionario para obtener una oferta en firme.
-      <br><br>
-      El valor calculado de recompra de su motociclieta <strong>{{ props.bike.modelo }} </strong> es de:
-      <span class=" text-base  bg-blue-500/10 w-max m-auto px-3 py-2 rounded-lg">{{ buybackMotorbikePrice }}€</span>
-    </p>
+    <div class="flex flex-col mt-3 bg-gray-100 p-4 rounded-lg">
+      <p>
+        El valor mostrado a continuación es una estimación de precio de recompra aproximado, es necesario realizar una
+        tasación en un taller. Por favor, consulta con tu concesionario para obtener una oferta en firme.
+        <br><br>
+        El valor calculado de recompra de su motociclieta <strong>{{ props.bike.modelo }} </strong> es de:
+      </p>
+      <span class="text-2xl bg-blue-500/10 w-max m-auto px-3 py-2 rounded-lg mt-2">{{ buybackMotorbikePrice }}€</span>
+    </div>
   </div>
 </template>

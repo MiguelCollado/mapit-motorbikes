@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import {computed, defineEmits, ref, toRef, watch} from 'vue'
+import {computed, ref, toRef, watch} from 'vue'
 import {
   TransitionRoot,
   TransitionChild,

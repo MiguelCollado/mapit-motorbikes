@@ -12,7 +12,7 @@ async function init() {
   }
 }
 
-async function addMarker(element: HTMLElement | undefined, position: google.maps.LatLngLiteral) {
+function addMarker(element: HTMLElement | undefined, position: google.maps.LatLngLiteral) {
   if (!!element && !!googleInstance) {
     const map = new googleInstance.maps.Map(element, {
       center: position,
