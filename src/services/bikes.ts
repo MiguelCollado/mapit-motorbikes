@@ -11,14 +11,19 @@ function fetchUserBikes(): Promise<Array<Motorbike>> {
   }
 }
 
-function fetchBike(id: string): Promise<Motorbike> {
+async function fetchBike(id: string) {
   try {
-    return fetch(`${import.meta.env.VITE_MAPIT_MOTORBIKE_ENDPOINT}/motos/${id}`)
-      .then(response => response.json())
-      .then(json => json as Motorbike)
+    const response = await fetch(`${import.meta.env.VITE_MAPIT_MOTORBIKE_ENDPOINT}/motos/${id}`)
+    const bike = await response.json() as Motorbike
+
+    if (bike !== null && Object.entries(bike).length > 0) {
+      return bike
+    } else {
+      return null
+    }
   } catch (error) {
     console.error(error);
-    return Promise.resolve({} as Motorbike);
+    return null;
   }
 }
 

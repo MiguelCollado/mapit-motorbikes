@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 
-import {useRoute} from "vue-router";
+import {useRoute, useRouter} from "vue-router";
 import {useBikeService} from "@/services/bikes";
-import {onMounted, ref} from "vue";
+import {onBeforeMount, onMounted, ref} from "vue";
 import MapitMap from "@/components/MapitMap.vue";
 import MapitBikeInfo from "@/components/MapitBikeInfo.vue";
 import MapitButton from "@/components/MapitButton.vue";
@@ -10,6 +10,7 @@ import MapitModal from "@/components/MapitModal.vue";
 import type Motorbike from "@/domain/motorbike";
 
 const {params} = useRoute();
+const router = useRouter();
 const {fetchBike} = useBikeService();
 
 const bike = ref({} as Motorbike);
@@ -17,8 +18,13 @@ const isModalOpen = ref(false);
 const isModalLoading = ref(false);
 const openModalButtonType = ref("primary");
 
-onMounted(async () => {
-  bike.value = await fetchBike(params.id as string)
+onBeforeMount(async () => {
+  const fetchedBike = await fetchBike(params.id as string)
+  if (fetchedBike !== null) {
+    bike.value = fetchedBike
+  } else {
+      await router.push({name: "not-found"})
+  }
 })
 
 function openModal() {

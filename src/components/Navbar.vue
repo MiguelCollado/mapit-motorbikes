@@ -10,5 +10,6 @@ import MapitButton from "@/components/MapitButton.vue";
       <img src="/images/logo.png" class="w-[100px] mr-4">
       <span>Dashboard</span>
     </RouterLink>
+    <RouterLink to="/credits" class="ml-4">Créditos</RouterLink>
   </nav>
 </template>

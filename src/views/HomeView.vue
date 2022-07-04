@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import MapitBikeList from "@/components/MapitBikeList.vue";
-import MapitHomeViewSkeleton from "@/components/MapitHomeViewSkeleton.vue";
 import {useBikeService} from "@/services/bikes";
 import {onMounted, ref} from "vue";
 import type Motorbike from "@/domain/motorbike";

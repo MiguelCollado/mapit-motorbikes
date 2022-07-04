@@ -1,6 +1,6 @@
-<script  lang="ts" setup="">
-</script>
-
 <template>
-  <
+  <div class="flex flex-col mt-12">
+    <h1 class="text-2xl">Prueba técnica para Mapit Iot</h1>
+    <h2>Realizado por <a href="mailto:hi@ironmike.es">Miguel Collado</a></h2>
+  </div>
 </template>
