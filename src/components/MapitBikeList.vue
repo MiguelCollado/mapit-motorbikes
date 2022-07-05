@@ -26,7 +26,7 @@ function goToBike(bike: Motorbike) {
     >
       <div class="flex flex-row items-center">
         <span aria-label="motorbike-name" class="text-medium">{{ bike.nombre }}</span>
-        <span aria-label="motorbike-model" class="ml-4 bg-gray-400 px-3 rounded-lg text-white font-medium">{{
+        <span aria-label="motorbike-model" class="ml-4 bg-gray-500 dark:bg-gray-400 px-3 rounded-lg text-white font-medium">{{
           bike.modelo
         }}</span>
       </div>

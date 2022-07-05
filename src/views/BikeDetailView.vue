@@ -52,7 +52,7 @@ function closeModal() {
       <span class="model">{{ bike.modelo }}</span>
       <RouterLink
         to="/"
-        class="ml-auto flex items-center bg-gray-100/20 px-3 py-1 rounded-full"
+        class="ml-auto flex items-center bg-gray-400/20 dark:bg-gray-100/20 px-3 py-1 rounded-full"
         aria-label="return-button"
       >
         <span class="mr-2 mb-[2px]">Cerrar</span>
@@ -90,7 +90,7 @@ h1 {
 }
 
 .model {
-  @apply text-base font-medium ml-4 bg-gray-400 px-3 text-white rounded-lg w-max;
+  @apply text-base font-medium ml-4 bg-gray-500 dark:bg-gray-400 px-3 text-white rounded-lg w-max;
 }
 
 .close-button {
