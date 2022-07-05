@@ -1,11 +1,10 @@
 <script lang="ts" setup>
-
-import {onMounted, ref} from "vue";
-import {useGoogleMaps} from "@/composables/maps";
+import { onMounted, ref } from "vue"
+import { useGoogleMaps } from "@/composables/maps"
 
 interface Props {
-  latitude: number;
-  longitude: number;
+  latitude: number
+  longitude: number
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -13,18 +12,19 @@ const props = withDefaults(defineProps<Props>(), {
   longitude: 0,
 })
 
-const map = ref<HTMLElement>();
+const map = ref<HTMLElement>()
 
 onMounted(async () => {
-  const {addMarker} = await useGoogleMaps();
-  addMarker(map.value as HTMLElement, {lat: props.latitude, lng: props.longitude})
+  const { addMarker } = await useGoogleMaps()
+  addMarker(map.value as HTMLElement, {
+    lat: props.latitude,
+    lng: props.longitude,
+  })
 })
-
 </script>
 
 <template>
-  <div ref="map" class="mapit-map w-100 h-[50vh] rounded-lg">
-  </div>
+  <div ref="map" class="mapit-map w-100 h-[50vh] rounded-lg"></div>
 </template>
 
 <style>

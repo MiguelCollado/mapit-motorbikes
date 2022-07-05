@@ -1,28 +1,30 @@
 <script lang="ts" setup>
-import {computed, ref, toRef, watch} from 'vue'
+import { ref, watch } from "vue"
 import {
   TransitionRoot,
   TransitionChild,
   Dialog,
   DialogPanel,
   DialogTitle,
-} from '@headlessui/vue'
+} from "@headlessui/vue"
 
 interface Props {
-  open: boolean,
-  title: string,
-  description: string,
+  open: boolean
+  title: string
+  description: string
 }
 
 const props = defineProps<Props>()
-const emit = defineEmits(['closeModal'])
+const emit = defineEmits(["closeModal"])
 
-watch(() => props.open, (value) => {
-  isOpen.value = value;
-})
+watch(
+  () => props.open,
+  (value) => {
+    isOpen.value = value
+  }
+)
 
-const isOpen = ref(false)
-
+const isOpen = ref(props.open)
 </script>
 
 <template>
@@ -54,6 +56,7 @@ const isOpen = ref(false)
             leave-to="opacity-0 scale-95"
           >
             <DialogPanel
+              aria-label="mapit-modal"
               class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
             >
               <DialogTitle
@@ -64,7 +67,7 @@ const isOpen = ref(false)
               </DialogTitle>
               <div class="mt-2">
                 <p class="text-sm text-center text-gray-500">
-                  {{  props.description }}
+                  {{ props.description }}
                 </p>
               </div>
 
@@ -73,6 +76,7 @@ const isOpen = ref(false)
                   type="button"
                   class="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                   @click="emit('closeModal')"
+                  aria-label="close-button"
                 >
                   OK!
                 </button>
@@ -84,5 +88,3 @@ const isOpen = ref(false)
     </Dialog>
   </TransitionRoot>
 </template>
-
-

@@ -4,12 +4,16 @@
   "scripts": {
     "dev": "vite --host",
     "build": "run-p type-check build-only",
-    "preview": "vite preview --port 4173",
-    "test:e2e": "start-server-and-test preview http://127.0.0.1:4173/ 'cypress open --e2e'",
-    "test:e2e:ci": "start-server-and-test preview http://127.0.0.1:4173/ 'cypress run --e2e'",
+    "preview": "vite preview --port 4173 --host",
+    "test": "vitest",
+    "coverage": "vitest run --coverage",
+    "cypress:e2e": "start-server-and-test preview http://127.0.0.1:4173/ 'cypress open --e2e'",
+    "cypress:e2e:ci": "start-server-and-test preview http://127.0.0.1:4173/ 'cypress run --e2e'",
+    "cypress:component": "start-server-and-test preview http://127.0.0.1:4173/ 'cypress open --component'",
+    "cypress:component:ci": "start-server-and-test preview http://127.0.0.1:4173/ 'cypress run --component'",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
+    "lint": "eslint . --ext .vue,.js,.ts --fix --ignore-path .eslintignore"
   },
   "dependencies": {
     "@headlessui/vue": "^1.6.5",
@@ -27,6 +31,7 @@
     "@vue/test-utils": "^2.0.0",
     "@vue/tsconfig": "^0.1.3",
     "autoprefixer": "^10.4.7",
+    "c8": "^7.11.3",
     "cypress": "^10.1.0",
     "eslint": "^8.5.0",
     "eslint-plugin-cypress": "^2.12.1",

@@ -13,6 +13,34 @@ describe("Motorbike navigation", () => {
     cy.visit("/bikes/MOTO_A")
 
     // Assert
-    cy.contains("h1", "MOTO_A")
+    cy.contains("h1", "Favorita")
+  })
+
+  it("redirects to 404 for a non valid motorbike", () => {
+    // Arrange
+    cy.visit("/bikes/MOTO_C")
+
+    // Assert
+    cy.url().should("include", "/404")
+  })
+})
+
+describe("Credits navigation", () => {
+  it("visits the credits", () => {
+    cy.visit("/credits")
+
+    cy.get("[aria-label='creator']").should(
+      "have.attr",
+      "href",
+      "mailto:hi@ironmike.es"
+    )
+  })
+})
+
+describe("Not found navigation", () => {
+  it("redirects to not found view", () => {
+    cy.visit("/noexists")
+
+    cy.url().should("include", "/404")
   })
 })

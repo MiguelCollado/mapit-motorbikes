@@ -1,34 +1,27 @@
-<script  lang="ts" setup="">
-
-import {computed} from "vue";
-
-type ButtonType = 'primary' | 'success' | 'error'
+<script lang="ts" setup="">
+import { computed } from "vue"
+import type { ButtonType } from "@/types"
 
 interface Props {
   text: string
-  type: ButtonType,
+  type: ButtonType
   loading: boolean
 }
 
 const props = defineProps<Props>()
 
 const btnClasses = computed(() => {
-  return [props.type, props.loading ? 'loader' : '']
+  return [props.type, props.loading ? "loader" : ""]
 })
 </script>
 
 <template>
-  <button
-    type="button"
-    :class="btnClasses"
-    :disabled="props.loading"
-  >
+  <button type="button" :class="btnClasses" :disabled="props.loading">
     {{ props.text }}
   </button>
 </template>
 
 <style scoped>
-
 button:before {
   content: "";
   position: absolute;
@@ -79,7 +72,7 @@ button:before {
   top: 50%;
   width: 24px;
   height: 24px;
-  border: 3px solid #FFF;
+  border: 3px solid #fff;
   border-bottom-color: transparent;
   border-radius: 50%;
   display: inline-block;
@@ -97,5 +90,4 @@ button:before {
     transform: translate(0, -50%) rotate(360deg);
   }
 }
-
 </style>

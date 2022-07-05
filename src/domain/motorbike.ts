@@ -1,6 +1,13 @@
-export default interface Motorbike {
+export interface Motorbike {
   id: string
-  fechaCompra: string,
-  precioCompra: number,
-  modelo: string,
+  nombre: string
+  fechaCompra: string
+  precioCompra: number
+  modelo: string
+  coordenadas: Coordinates
+}
+
+export interface Coordinates {
+  latitud: number
+  longitud: number
 }

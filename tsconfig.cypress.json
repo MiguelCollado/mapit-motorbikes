@@ -1,6 +1,8 @@
 {
   "extends": "./tsconfig.app.json",
   "include": [
+    "./src",
+    "cypress.d.ts",
     "cypress/**/*.ts",
   ],
   "exclude": [],

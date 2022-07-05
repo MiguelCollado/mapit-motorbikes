@@ -1,27 +1,29 @@
 <script lang="ts" setup>
-import {RouterView} from "vue-router"
-import Navbar from "@/components/Navbar.vue";</script>
+import { RouterView } from "vue-router"
+import NavBar from "@/components/NavBar.vue"
+</script>
 
 <template>
   <Suspense>
     <template #default>
       <main>
-        <Navbar/>
+        <NavBar />
         <router-view v-slot="{ Component }">
           <transition name="fade" mode="out-in">
-            <component :is="Component"/>
+            <component :is="Component" />
           </transition>
         </router-view>
       </main>
     </template>
 
     <template #fallback>
-      <div class="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] text-center">
+      <div
+        class="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] text-center"
+      >
         <div class="spinner"></div>
       </div>
     </template>
   </Suspense>
-
 </template>
 
 <style scoped>
@@ -43,7 +45,11 @@ import Navbar from "@/components/Navbar.vue";</script>
   animation: spin 1s linear infinite;
 }
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>
