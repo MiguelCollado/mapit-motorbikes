@@ -22,7 +22,7 @@
     <a href="https://github.com/MiguelCollado/mapit-motorbikes"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/MiguelCollado/mapit-motorbikes">View Demo</a>
+    <a href="https://mapit.ironmike.es">View Demo</a>
     ·
     <a href="https://github.com/MiguelCollado/mapit-motorbikes/issues">Report Bug</a>
     ·
